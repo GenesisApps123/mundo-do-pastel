@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        vibrar();
+        return;
+    }
+
+    let sabores = [];
+    document.querySelectorAll('.sabor').forEach(item => {
+        if(item.checked){
+            sabores.push(item.value);
+        }
+    });
+
+    let bebidasSelecionadas = [];
+    document.querySelectorAll('.bebida').forEach(item => {
+        if(item.checked){
+            bebidasSelecionadas.push(item.value);
+        }
+    });
+
+    const totalPedido = totalEl.innerText;
+
+    let mensagem = `🍴 *NOVO PEDIDO - MUNDO DO PASTEL*%0A%0A`;
+
+    mensagem += `👤 *Nome:* ${nome.value}%0A`;
+    mensagem += `📍 *Endereço:* ${endereco.value}%0A%0A`;
+
+    mensagem += `🥟 *PASTÉIS*%0A`;
+
+    if(qtdPequeno > 0){
+        mensagem += `- ${qtdPequeno} Pastel(is) Pequeno(s) - R$ ${(qtdPequeno * 5).toFixed(2)}%0A`;
+    }
+
+    if(qtdMedio > 0){
+        mensagem += `- ${qtdMedio} Pastel(is) Médio(s) - R$ ${(qtdMedio * 7).toFixed(2)}%0A`;
+    }
+
+    if(qtdGrande > 0){
+        mensagem += `- ${qtdGrande} Pastel(is) Grande(s) - R$ ${(qtdGrande * 9.99).toFixed(2)}%0A`;
+    }
+
+    mensagem += `%0A🔥 *Sabores Escolhidos:*%0A`;
+
+    if(sabores.length > 0){
+        sabores.forEach(item => {
+            mensagem += `• ${item}%0A`;
+        });
+    } else {
+        mensagem += `Nenhum sabor selecionado%0A`;
+    }
+
+    mensagem += `%0A🥤 *Bebidas:*%0A`;
+
+    if(bebidasSelecionadas.length > 0){
+        bebidasSelecionadas.forEach(item => {
+            mensagem += `• ${item}%0A`;
+        });
+    } else {
+        mensagem += `Nenhuma bebida selecionada%0A`;
+    }
+
+    mensagem += `%0A💳 *Pagamento:* ${pagamento.value}%0A`;
+    mensagem += `%0A💰 *TOTAL:* ${totalPedido}`;
+
+    const numero = '5588993082035';
+
+    const url = `https://wa.me/${numero}?text=${mensagem}`;
+
+    window.open(url, '_blank');
+}
+
+calcularTotal();
+</script>
+
+</body>
+</html>
